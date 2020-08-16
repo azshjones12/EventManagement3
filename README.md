@@ -21,16 +21,16 @@ This app uses HTTP Methods:
 * PUT
 * DELETE
 
-##### The application has the following functionality: 
+### The application has the following functionality: 
 
-###### Authentication 
+#### Authentication 
 1.	User can register 
 *     POST: /users/register
 2.  User's password is encrypted using hashing and salting
 3.	User can login
 *     POST: /users/login
 
-##### Users
+#### Users
 1. User can get their account information
 *     GET: /users/{userId}
 2. User can update their account information
@@ -40,7 +40,7 @@ This app uses HTTP Methods:
 4. User can change their password
 *     PUT: /users/password/{userId}
 
-###### Events
+#### Events
 1.  Create an event
 *     POST: /users/{userId}/events
 2.  Update an event
@@ -52,7 +52,7 @@ This app uses HTTP Methods:
 5.	Delete an event
 *     DELETE: /users/{userId}/events/{id}
 
-###### Tasks
+#### Tasks
 1.  Create a task for an event
 *     POST: /events/{id}/tasks
 2.  Update a task associated with an event
