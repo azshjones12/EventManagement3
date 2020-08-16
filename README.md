@@ -11,6 +11,7 @@ Users can create events, add attendees to events and add tasks for events to man
 * Spring Boot 1.2.6
 * MySQL Version 8.0.20
 * Eclipse Version 4.15.0
+* Postman (for API testing)
 
 ### REST API
 
