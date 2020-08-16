@@ -13,41 +13,41 @@ import com.promineotech.eventManagementAPI4.entity.Attendee;
 import com.promineotech.eventManagementAPI4.service.AttendeeService;
 
 @RestController
-@RequestMapping("/attendees")
+@RequestMapping("/events/{eventId}/attendees")
 public class AttendeeController {
 	
 	@Autowired
 	private AttendeeService attendeeService;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Object> addAttendee(@RequestBody Attendee attendee) {
+	public ResponseEntity<Object> addAttendee(@PathVariable Long eventId, @RequestBody Attendee attendee) {
 		return new ResponseEntity<Object>(attendeeService.addAttendee(attendee), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<Object> getAttendees() {
+	public ResponseEntity<Object> getAttendees(@PathVariable Long eventId) {
 		return new ResponseEntity<Object>(attendeeService.getAttendees(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public Attendee getAttendee(@PathVariable Long id) {
-		return attendeeService.getAttendee(id);
+	@RequestMapping(value="/{attendeeId}",method=RequestMethod.GET)
+	public Attendee getAttendee(@PathVariable Long eventId, @PathVariable Long attendeeId) {
+		return attendeeService.getAttendee(attendeeId);
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Object> updateAttendee(@RequestBody Attendee attendee, @PathVariable Long id) {
+	@RequestMapping(value="/{attendeeId}", method=RequestMethod.PUT)
+	public ResponseEntity<Object> updateAttendee(@PathVariable Long eventId, @RequestBody Attendee attendee, @PathVariable Long attendeeId) {
 		try {
-			return new ResponseEntity<Object>(attendeeService.updateAttendee(attendee, id), HttpStatus.OK);
+			return new ResponseEntity<Object>(attendeeService.updateAttendee(attendee, attendeeId), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Object>("Unable to update attendee.", HttpStatus.BAD_REQUEST);
 		}
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Object> deleteAttendee(@PathVariable Long id) {
+	@RequestMapping(value="/{attendeeId}", method=RequestMethod.DELETE)
+	public ResponseEntity<Object> deleteAttendee(@PathVariable Long eventId, @PathVariable Long attendeeId) {
 		try {
-			attendeeService.removeAttendee(id);
-			return new ResponseEntity<Object>("Successfully deleted attendee with id: " + id, HttpStatus.OK);
+			attendeeService.removeAttendee(attendeeId);
+			return new ResponseEntity<Object>("Successfully deleted attendee with id: " + attendeeId, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Object>("Unable to delete attendee.", HttpStatus.BAD_REQUEST);
 		}

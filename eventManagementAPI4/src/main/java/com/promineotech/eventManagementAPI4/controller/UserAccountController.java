@@ -40,23 +40,34 @@ public class UserAccountController {
 		}
 	}
 
-	@RequestMapping("/{id}")
-	public UserAccount getUserAccount(@PathVariable Long id) {
-		return authService.getUserAccount(id);
+	@RequestMapping("/{userId}")
+	public UserAccount getUserAccount(@PathVariable Long userId) {
+		return authService.getUserAccount(userId);
 	}
 	
-	@RequestMapping(value ="/{id}", method=RequestMethod.PUT)
-	public UserAccount updateUserAccount(@PathVariable Long id, @RequestBody UserAccount user) {
-		return authService.updateUserAccount(id, user);
+	@RequestMapping(value ="/{userId}", method=RequestMethod.PUT)
+	public UserAccount updateUserAccount(@PathVariable Long userId, @RequestBody UserAccount user) {
+		return authService.updateUserAccount(userId, user);
 	}
 	
-	@RequestMapping(value ="/password/{id}", method=RequestMethod.PUT)
-	public UserAccount changePassword(@PathVariable Long id, @RequestBody Credentials cred) {
-		return authService.changePassword(cred, id);
+	@RequestMapping(value ="/password/{userId}", method=RequestMethod.PUT)
+	public UserAccount changePassword(@PathVariable Long userId, @RequestBody Credentials cred) {
+		return authService.changePassword(cred, userId);
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public void deleteUserAccount(@PathVariable Long id) {
-		authService.deleteUserAccount(id);
+//	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+//	public void deleteUserAccount(@PathVariable Long id) {
+//		authService.deleteUserAccount(id);
+//	}
+
+	@RequestMapping(value="/{userId}", method=RequestMethod.DELETE)
+	public ResponseEntity<Object> deleteUserAccount(@PathVariable Long userId) {
+		try {
+		authService.deleteUserAccount(userId);
+		return new ResponseEntity<Object>("Successfully deleted user with user ID: " + userId, HttpStatus.OK);
+	} catch (Exception e) {
+		return new ResponseEntity<Object>("Unable to delete user.", HttpStatus.BAD_REQUEST);
 	}
 }
+}
+

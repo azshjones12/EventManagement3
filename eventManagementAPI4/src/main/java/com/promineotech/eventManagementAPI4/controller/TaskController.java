@@ -16,29 +16,29 @@ import com.promineotech.eventManagementAPI4.service.TaskService;
 import com.promineotech.eventManagementAPI4.util.TaskStatus;
 
 @RestController
-@RequestMapping("/events/{id}/tasks")
+@RequestMapping("/events/{eventId}/tasks")
 public class TaskController {
 
 	@Autowired
 	private TaskService taskService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public Set<Task> getTasksByEventID(@PathVariable Long id) {
-		return taskService.getTasksByEventID(id);
+	public Set<Task> getTasksByEventID(@PathVariable Long eventId) {
+		return taskService.getTasksByEventID(eventId);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Object> addTask(@PathVariable Long id, @RequestBody Task task) {
-		return new ResponseEntity<Object>(taskService.addTask(id, task), HttpStatus.CREATED);
+	public ResponseEntity<Object> addTask(@PathVariable Long eventId, @RequestBody Task task) {
+		return new ResponseEntity<Object>(taskService.addTask(eventId, task), HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value="/{taskId}",method=RequestMethod.GET)
-	public Task getTask(@PathVariable Long id, @PathVariable Long taskId) {
-		return taskService.getTask(id, taskId);
+	public Task getTask(@PathVariable Long eventId, @PathVariable Long taskId) {
+		return taskService.getTask(eventId, taskId);
 	}
 	
 	@RequestMapping(value="/{taskId}", method=RequestMethod.PUT)
-	public ResponseEntity<Object> updateTask(@RequestBody Task task, @PathVariable Long taskId) {
+	public ResponseEntity<Object> updateTask(@RequestBody Task task, @PathVariable Long eventId, @PathVariable Long taskId) {
 		try {
 			if (task.getStatus().equals(TaskStatus.IN_PROGRESS)) {
 			return new ResponseEntity<Object>(taskService.updateTask(task, taskId), HttpStatus.OK);
@@ -52,7 +52,7 @@ public class TaskController {
 	}
 	
 	@RequestMapping(value="/{taskId}", method=RequestMethod.DELETE)
-	public ResponseEntity<Object> deleteTask(@PathVariable Long taskId) {
+	public ResponseEntity<Object> deleteTask(@PathVariable Long eventId, @PathVariable Long taskId) {
 		try {
 			taskService.removeTask(taskId);
 			return new ResponseEntity<Object>("Successfully deleted task with taskId: " + taskId, HttpStatus.OK);

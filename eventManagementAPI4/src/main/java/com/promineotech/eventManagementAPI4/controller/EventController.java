@@ -36,33 +36,33 @@ public class EventController {
 		return new ResponseEntity<Object>(eventService.getEvents(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public Event getEvent(@PathVariable Long id) {
-		return eventService.getEvent(id);
+	@RequestMapping(value="/{eventId}", method=RequestMethod.GET)
+	public Event getEvent(@PathVariable Long eventId) {
+		return eventService.getEvent(eventId);
 	}
 	
-	@RequestMapping(value="{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Object> updateEvent(@PathVariable Long id, @RequestBody Event event) {
+	@RequestMapping(value="{eventId}", method=RequestMethod.PUT)
+	public ResponseEntity<Object> updateEvent(@PathVariable Long eventId, @RequestBody Event event) {
 		try {
-			return new ResponseEntity<Object>(eventService.updateEvent(id, event), HttpStatus.OK);
+			return new ResponseEntity<Object>(eventService.updateEvent(eventId, event), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Object>("Unable to update event.", HttpStatus.BAD_REQUEST);
 		}
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Object> deleteEvent(@PathVariable Long id) {
+	@RequestMapping(value="/{eventId}", method=RequestMethod.DELETE)
+	public ResponseEntity<Object> deleteEvent(@PathVariable Long eventId) {
 		try {
-			eventService.deleteEvent(id);
-			return new ResponseEntity<Object>("Successfully deleted event with id: " + id, HttpStatus.OK);
+			eventService.deleteEvent(eventId);
+			return new ResponseEntity<Object>("Successfully deleted event with ID: " + eventId, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Object>("Unable to delete event.", HttpStatus.BAD_REQUEST);
 		}
 	}
 	
-	@RequestMapping(value="/{id}/attendees", method=RequestMethod.GET)
-	public Set<Attendee> getAttendeesByEventID(@PathVariable Long id) {
-		return eventService.getAttendeesByEventID(id);
+	@RequestMapping(value="/{eventId}/attendees", method=RequestMethod.GET)
+	public Set<Attendee> getAttendeesByEventID(@PathVariable Long eventId) {
+		return eventService.getAttendeesByEventID(eventId);
 	}
 	
 
