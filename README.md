@@ -14,7 +14,7 @@ Users can create events, add attendees to events and add tasks for events to man
 
 ### REST API
 
-This app uses HTTP Methods:
+This app uses HTTP Verb Methods:
 
 * POST
 * GET
