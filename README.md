@@ -5,20 +5,20 @@
 The purpose of this project is to create an event management application. 
 
 ### Technologies
-*Java Version 1.8.0_251
-*Apache Maven Version 3.6.3
-*Spring Boot 1.2.6
-*MySQL Version 8.0.20
-*Eclipse Version 4.15.0
+* Java Version 1.8.0_251
+* Apache Maven Version 3.6.3
+* Spring Boot 1.2.6
+* MySQL Version 8.0.20
+* Eclipse Version 4.15.0
 
 ### REST API
 
 This app uses HTTP Methods:
 
-POST
-GET
-PUT
-DELETE
+* POST
+* GET
+* PUT
+* DELETE
 
 ##### The application has the following functionality: 
 
