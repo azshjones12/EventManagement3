@@ -63,3 +63,6 @@ This app uses HTTP Verb Methods:
 *     DELETE: /events/{id}/tasks/{taskId}
 5.  Complete a task and receive the date/time the task was completed
 *     PUT: /events/{id}/tasks/{taskId}
+
+##  Demo
+![Demo CountPages alpha](https://github.com/azshjones12/EventManagement3/blob/master/PromineoTech%20Final%20Project%20Get%20Together%20Postman%20Demo.gif)
