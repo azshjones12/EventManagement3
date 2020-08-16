@@ -27,7 +27,7 @@ This app uses HTTP Verb Methods:
 #### Authentication 
 1.	User can register 
 *     POST: /users/register
-2.  User's password is encrypted using hashing and salting
+2.  User's password is secured using hashing and salting
 3.	User can login
 *     POST: /users/login
 
