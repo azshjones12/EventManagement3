@@ -1,4 +1,4 @@
-# Get Together: An Event Management System Project
+# Get Together: An Event Management System
 
 ### *Final Project for Promineo Tech Back End Software Development Bootcamp*
 
